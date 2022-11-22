@@ -4,16 +4,13 @@ from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtGui import QPainter, QColor, QPolygon
 import sys
 import random
-from UI import Ui_MainWindow
 
 
-
-class Example(QMainWindow, Ui_MainWindow):
+class Example(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
+        uic.loadUi('UI.ui', self)
         self.flag = False
-        self.setWindowTitle('Супрематизм')
         self.pushButton.clicked.connect(self.draw)
         self.coords = []
 
@@ -26,8 +23,8 @@ class Example(QMainWindow, Ui_MainWindow):
         if self.flag:
             qp = QPainter()
             qp.begin(self)
-            qp.setPen(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
-            qp.setBrush(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+            qp.setPen(QColor(255, 255, 0))
+            qp.setBrush(QColor(255, 255, 0))
             self.x, self.y = random.randint(100, 200), random.randint(100, 200)
             qp.drawEllipse(self.x, self.y, self.size, self.size)
             qp.end()
